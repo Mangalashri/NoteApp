@@ -11,13 +11,23 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+import static com.example.mangalashri.notebook.R.drawable.p;
 import static com.example.mangalashri.notebook.R.drawable.t;
+import static com.example.mangalashri.notebook.R.id.noteText;
 
 /**
  * Created by Mangalashri on 26-09-2016.
  */
 
 public class NoteAdapter extends ArrayAdapter<Note> {
+
+    public static class ViewHolder{
+        TextView title;
+        TextView note;
+        ImageView noteIcon;
+    }
+
     public NoteAdapter(Context context, ArrayList<Note> notes){
         super(context,0,notes);
     }
@@ -27,17 +37,24 @@ public class NoteAdapter extends ArrayAdapter<Note> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Note note = getItem(position);
 
+        ViewHolder viewHolder;
+
         if(convertView == null){
+            viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_row,parent,false);
+
+            viewHolder.title = (TextView)convertView.findViewById(R.id.listItemNoteTitle);
+            viewHolder.note = (TextView) convertView.findViewById(noteText);
+            viewHolder.noteIcon = (ImageView) convertView.findViewById(R.id.listItemNoteImg);
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        TextView noteTitle = (TextView)convertView.findViewById(R.id.listItemNoteTitle);
-        TextView noteText = (TextView) convertView.findViewById(R.id.noteText);
-        ImageView noteIcon = (ImageView) convertView.findViewById(R.id.listItemNoteImg);
 
-        noteTitle.setText(note.getTitle());
-        noteText.setText(note.getMessage());
-        noteIcon.setImageResource(note.getAssociateddDrawable());
+        viewHolder.title.setText(note.getTitle());
+        viewHolder.note.setText(note.getMessage());
+        viewHolder.noteIcon.setImageResource(note.getAssociateddDrawable());
 
         return convertView;
     }
