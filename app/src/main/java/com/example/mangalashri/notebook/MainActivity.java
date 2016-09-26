@@ -11,10 +11,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NOTE_ID_EXTRA = "com.example.mangalashri.notebook.Note Identifier";
-    public static final String NOTE_TITLE_EXTRA = "com.example.mangalashri.notebook.Note Title";
-    public static final String NOTE_MESSAGE_EXTRA = "com.example.mangalashri.notebook.Note Message";
-    public static final String NOTE_CATEGORY_EXTRA = "com.example.mangalashri.notebook.Note Category";
+    public static final String NOTE_ID_EXTRA = "Note Identifier";
+    public static final String NOTE_TITLE_EXTRA = "Note Title";
+    public static final String NOTE_MESSAGE_EXTRA = "Note Message";
+    public static final String NOTE_CATEGORY_EXTRA = "Note Category";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
